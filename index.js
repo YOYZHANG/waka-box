@@ -8,12 +8,17 @@ const {
   WAKATIME_API_KEY: wakatimeApiKey
 } = process.env;
 
+console.log(GIST_ID, "gistId");
+console.log(GH_TOKEN, "GH_TOKEN");
+console.log(WAKATIME_API_KEY, "WAKATIME_API_KEY");
+
 const wakatime = new WakaTimeClient(wakatimeApiKey);
 
 const octokit = new Octokit({ auth: `token ${githubToken}` });
 
 async function main() {
   const stats = await wakatime.getMyStats({ range: RANGE.LAST_7_DAYS });
+  console.log(stats, "stats");
   await updateGist(stats);
 }
 
